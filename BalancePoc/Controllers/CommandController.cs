@@ -79,7 +79,7 @@ namespace BalancePoc.Controllers
         public CommandController(PocContext context, IConfiguration configuration)
         {
             this.context = context;
-            isMock = configuration.GetValue<bool>("IsMock");
+            isMock = false;
         }
 
         private string BuildApiUrl(string methodApi)
@@ -100,7 +100,7 @@ namespace BalancePoc.Controllers
                 {
                     in1 = GetRandomNumber(),
                     in2 = GetRandomNumber(),
-                    in3 = GetRandomNumber(),
+                    in3 = 1,
                     in4 = GetRandomNumber(),
                     in5 = GetRandomNumber(),
                 };

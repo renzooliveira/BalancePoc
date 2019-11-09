@@ -21,16 +21,13 @@ export class HomeComponent implements OnInit {
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
-    setInterval(() => this.getInputs(), 500);
-    setInterval(() => this.listEvents(), 1000);
-    setInterval(() => this.getLastEventIn(), 1000);
-    setInterval(() => this.getLastEventOut(), 1000);
+    setInterval(() => this.getInputs(), 1000);
+
   }
 
   private getInputs() {
     this.httpClient
       .get('api/command/inputs')
-      .pipe(catchError(() => 'INPUTS GET - ERROR'))
       .subscribe(
         (response: Inputs) => this.processInputs(response),
         (error: string) => console.log(error)
@@ -72,17 +69,17 @@ export class HomeComponent implements OnInit {
     this.outputs.out1 = this.inputs.in1;
     this.outputs.out2 = this.inputs.in2;
 
-    if (this.inputs.in1 || this.inputs.in2) {
-      this.sendOutputs();
-    }
+    //if (this.inputs.in1 || this.inputs.in2) {
+    //  this.sendOutputs();
+    //}
 
     if (this.inputs.in3) {
       this.pwm1.addPower();
-      this.sendPWM(this.pwm1);
     } else {
       this.pwm1.resetPower();
-      this.sendPWM(this.pwm1);
     }
+
+    //this.sendPWM(this.pwm1);
 
     if (this.inputs.in4) {
     }
